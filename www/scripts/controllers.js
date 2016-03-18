@@ -144,12 +144,11 @@ angular.module('starter.controllers', [])
     $scope.resultado = $scope.loginService();
     $scope.resultado.then(function(val){
 
-      if(val){        
+      if(val!="passerror"){        
         $scope.visible=false;   
         $scope.closeLogin();
         localStorage.setItem("id",val);
         PushData.actualizartoken(val);
-        $state.go($rootScope.toState);
       }
 
     });
@@ -158,9 +157,9 @@ angular.module('starter.controllers', [])
 $scope.loginService=function(){
       
     var q = $q.defer();
-    $scope.loginData.password = md5.createHash($scope.loginData.password || '');
-   console.log($rootScope.baseURL+"1&user="+$scope.loginData.correo+"&pass="+$scope.loginData.password);
-    $http.get($rootScope.baseURL+"1&user="+$scope.loginData.correo+"&pass="+$scope.loginData.password).success(function(data){
+    $pass = md5.createHash($scope.loginData.password || '');
+   console.log($rootScope.baseURL+"1&user="+$scope.loginData.correo+"&pass="+$pass);
+    $http.get($rootScope.baseURL+"1&user="+$scope.loginData.correo+"&pass="+$pass).success(function(data){
       q.resolve(data);
     });
     return q.promise;

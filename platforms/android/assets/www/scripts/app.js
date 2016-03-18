@@ -21,7 +21,7 @@ angular.module('starter', ['ionic', 'starter.controllers','angular-md5','ionic-d
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
     var requireLogin = toState.data.requireLogin;
-          if (requireLogin &&  !localStorage.getItem("tbl_sede_id") )  { 
+          if (requireLogin &&  !localStorage.getItem("id") )  { 
       event.preventDefault();
       $rootScope.toState = toState;
      $rootScope.login();
