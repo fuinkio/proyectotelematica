@@ -1,4 +1,5 @@
 <ion-view view-title="{{canal}}">
+
   <ion-content>
 
         <ion-list ng-show="visi">
@@ -42,15 +43,18 @@
 
     </ion-list>
     <ion-list>
-      <ion-item ng-repeat="mensaje in ms" >
+    <ion-refresher
+    pulling-text="Hala para recargar..."
+    on-refresh="mensajes()">
+  </ion-refresher>
+      <ion-item ng-repeat="mensaje in ms | orderBy:'-tbl_mensaje_id'" >
    <div>
 
-    <a class="item item-thumbnail-left" href="#" >
+   
       
       <h2> {{mensaje.tbl_mensaje_message}}</h2>
 
-    </a>
-
+   
     
 
 </div>

@@ -367,6 +367,7 @@ $scope.act = $scope.mensajesservice();
     $scope.act.then(function(val){
       $scope.ms=val;
      });
+    $scope.$broadcast('scroll.refreshComplete');
  
 
 

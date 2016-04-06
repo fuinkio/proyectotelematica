@@ -16,6 +16,33 @@ angular.module('starter', ['ionic', 'starter.controllers','angular-md5','ionic-d
     }
   });
 })
+//http interceptors for show loading
+.config(function($httpProvider) {
+  $httpProvider.interceptors.push(function($rootScope) {
+    return {
+      request: function(config) {
+        $rootScope.$broadcast('loading:show')
+        return config
+      },
+      response: function(response) {
+        $rootScope.$broadcast('loading:hide')
+        return response
+      }
+    }
+  })
+})
+
+.run(function($rootScope, $ionicLoading) {
+  $rootScope.$on('loading:show', function() {
+    $ionicLoading.show({template: 'Loading...'})
+  })
+
+  $rootScope.$on('loading:hide', function() {
+    $ionicLoading.hide()
+  })
+})
+
+//end of http interceptors for show loading
 
 .run(function ($rootScope) {
 
