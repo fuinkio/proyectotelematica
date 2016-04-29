@@ -90,17 +90,7 @@ angular.module('starter.controllers', [])
         }
         if (notification.event != "registered") {
       
-          navigator.notification.beep(1);
-          navigator.notification.vibrate(2000);
-          if(notification.payload.payload.to=='viaje'){
-            $cordovaDialogs.confirm('Deseas ir a solicitudes?', 'Tienes una nueva solicitud!', ['Si','No'])
-              .then(function(buttonIndex) {
-                if (buttonIndex==1) {
-                  $state.go(notification.payload.payload.state);  
-                }
-              });
-      
-          }
+  
         
         }
     }
@@ -423,6 +413,7 @@ if($message!=""){
     
 
     var q = $q.defer();
+    console.log($rootScope.baseURL+"8&userid="+localStorage.getItem("id")+"&message="+$message+"&channel="+localStorage.getItem("nombre_canal"));
     $http.get($rootScope.baseURL+"8&userid="+localStorage.getItem("id")+"&message="+$message+"&channel="+localStorage.getItem("nombre_canal")).success(function(data){
       q.resolve(data);
     });
